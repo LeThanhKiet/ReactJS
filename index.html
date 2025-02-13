@@ -21,6 +21,7 @@
 
         <!-- add script tag to write JSX code -->
         <script type="text/babel">
+            console.log("ReactJS basic for me");
             // create a React element
             const element = <h1>Hello, World!</h1>; // This is JSX code - JavaScript XML
             // it be compiled to JavaScript code by Babel library
@@ -47,6 +48,24 @@
                     "ref": null,
                     "props": {
                         "children": "Hello, World!"
+                    },
+                    "_owner": null,
+                    "_store": {}
+                }
+            */
+
+            // Using props with React element. We use the same HTML tag
+            // Note some special cases: class(HTML) -> className(React element) , ...
+            const elementtt = <h1 title="This is heading">Hello Winter</h1>;
+            console.log(elementtt);
+            /*
+                {
+                    "type": "h1",
+                    "key": null,
+                    "ref": null,
+                    "props": {
+                        "title": "This is heading",
+                        "children": "Hello Winter"
                     },
                     "_owner": null,
                     "_store": {}
@@ -186,6 +205,10 @@
             function App() {
                 return (
                     <div>
+                        {/*
+                            In JSX syntax, we use {} to embed JavaScript code in JSX    
+                        */}
+                        {elementtt}
                         <YourComponentt title="Hello, World!" text="This is a paragraph." />
                         <YourComponentt title="Hello, Winter" text="This is a text for Winter" />
 
