@@ -22,7 +22,9 @@
         <!-- add script tag to write JSX code -->
         <script type="text/babel">
             // create a React element
-            const element = <h1>Hello, World!</h1>;
+            const element = <h1>Hello, World!</h1>; // This is JSX code - JavaScript XML
+            // it be compiled to JavaScript code by Babel library
+            const elementt = React.createElement("h1", null, "Hello, World!");
             console.log(element);
             /*
                {
@@ -35,6 +37,20 @@
                     "_owner": null,
                     "_store": {}
                }
+            */
+
+            console.log(elementt);
+            /*
+                {
+                    "type": "h1",
+                    "key": null,
+                    "ref": null,
+                    "props": {
+                        "children": "Hello, World!"
+                    },
+                    "_owner": null,
+                    "_store": {}
+                }
             */
 
             // create a React component
