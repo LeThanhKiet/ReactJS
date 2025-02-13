@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ReactJS</title>
+        <!-- add reactJS library to website -->
+        <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+        <!-- add reactDOM library to website -->
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+        <!-- reactDOM is a library that is used to render React elements to the DOM. -->
+
+        <!-- add babel library to website -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+        <!-- create a div element with id 'root' -->
+        <div id="root"></div>
+
+        <!-- add script tag to write JSX code -->
+        <script type="text/babel">
+            // create a React element
+            const element = <h1>Hello, World!</h1>;
+            console.log(element);
+            /*
+               {
+                    "type": "h1",
+                    "key": null,
+                    "ref": null,
+                    "props": {
+                         "children": "Hello, World!"
+                    },
+                    "_owner": null,
+                    "_store": {}
+               }
+            */
+
+            // create a React component
+            function YourComponent() {
+                return <h1>Hello, World!</h1>;
+            }
+
+            console.log(YourComponent);
+            /*
+               ƒ YourComponent() {
+                    return React.createElement(
+                         "h1",
+                         null,
+                         "Hello, World!"
+                    );
+               }
+            */
+
+            console.log(<YourComponent />);
+            /*
+               {
+                    "key": null,
+                    "ref": null,
+                    "props": {},
+                    "_owner": null,
+                    "_store": {}
+               }
+            */
+
+            // focus on props ...
+            // If you want to pass props to a component, you can do so by passing them as attributes to the component
+            // Expample:
+            console.log(<YourComponent propsName1="1" propsName2="2" propsName3="3" />);
+            /*
+               {
+                    "key": null,
+                    "ref": null,
+                    "props": {
+                         "propsName1": "1",
+                         "propsName2": "2",
+                         "propsName3": "3"
+                    },
+                    "_owner": null,
+                    "_store": {}
+               }
+            */
+
+            // Using a props to render a component
+            function YourComponentt(props) {
+                return (
+                    <div>
+                        <h1>{props.title}</h1>
+                        <p>{props.text}</p>
+                    </div>
+                );
+            }
+
+            // Children props
+            function YourComponenttt(props) {
+                return (
+                    <div>
+                        <h1>{props.title}</h1>
+                        <p>{props.children}</p>
+                    </div>
+                );
+            }
+            console.log(
+                <YourComponenttt title="Hello, World!">
+                    This is a paragraph but with REACT, it also be a children props.
+                </YourComponenttt>
+            );
+
+            /*
+               {
+                    "key": null,
+                    "ref": null,
+                    "props": {
+                         "title": "Hello, World!",
+                         "children": "This is a paragraph but with REACT, it also be a children props."
+                    },
+                    "_owner": null,
+                    "_store": {}
+               }
+            */
+
+            // Children props can be used to pass JSX elements or components as children to a component.
+            function YourComponentttt(props) {
+                return (
+                    <div>
+                        <h1>{props.title}</h1>
+                        {props.children}
+                    </div>
+                );
+            }
+
+            console.log(
+                <YourComponentttt title="This is example with children Props">
+                    <h2>This is example with children Props</h2>
+                    <YourComponent />
+                </YourComponentttt>
+            );
+            /*
+               {
+                    "key": null,
+                    "ref": null,
+                    "props": {
+                         "title": "This is example with children Props",
+                         "children": [
+                              {
+                                   "type": "h2",
+                                   "key": null,
+                                   "ref": null,
+                                   "props": {
+                                        "children": "This is example with children Props"
+                                   },
+                                   "_owner": null,
+                                   "_store": {}
+                              },
+                              {
+                                   "key": null,
+                                   "ref": null,
+                                   "props": {},
+                                   "_owner": null,
+                                   "_store": {}
+                              }
+                         ]
+                    },
+                    "_owner": null,
+                    "_store": {}
+               }
+            */
+
+            function App() {
+                return (
+                    <div>
+                        <YourComponentt title="Hello, World!" text="This is a paragraph." />
+                        <YourComponentt title="Hello, Winter" text="This is a text for Winter" />
+
+                        <YourComponenttt title="Hello, World!">
+                            This is a paragraph but with REACT, it also be a children props.
+                        </YourComponenttt>
+
+                        <YourComponentttt title="This is example with children Props">
+                            <h2>This is example with children Props</h2>
+                            <YourComponent />
+                        </YourComponentttt>
+                    </div>
+                );
+            }
+
+            console.log("This is the App component:");
+            console.log(<App />);
+            /*
+               {
+                    "key": null,
+                    "ref": null,
+                    "props": {},
+                    "_owner": null,
+                    "_store": {}
+               }
+            */
+
+            // render the React element to the DOM
+            //   ReactDOM.render(element, document.getElementById("root")); // With React version < 18
+            // With React version >= 18, the render method is deprecated. Instead, use the createRoot method to create a root and the render method to render the component to the root.
+            ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+        </script>
+    </body>
+</html>
