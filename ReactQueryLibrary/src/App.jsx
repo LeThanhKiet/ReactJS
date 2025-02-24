@@ -1,4 +1,3 @@
-import { useState, createContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Pages
@@ -7,15 +6,20 @@ import { Home, Profile, Contact } from "./pages";
 // Navbar
 import Navbar from "./components/Navbar";
 
-// Create a Store with createContext API
-export const AppContext = createContext();
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
-    const [username, setUserName] = useState("ThanhKiet");
+    const client = new QueryClient({
+        defaultOptions: {
+            queries: {
+                refetchOnWindowFocus: false,
+            },
+        },
+    });
 
     return (
-        <>
-            <AppContext.Provider value={{ username, setUserName }}>
+        <QueryClientProvider client={client}>
+            <>
                 <Router>
                     <Navbar />
                     <Routes>
@@ -25,8 +29,8 @@ function App() {
                         <Route path="*" element={<h1 style={{ textAlign: "center" }}>NOT FOUND</h1>} />
                     </Routes>
                 </Router>
-            </AppContext.Provider>
-        </>
+            </>
+        </QueryClientProvider>
     );
 }
 
