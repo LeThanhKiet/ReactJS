@@ -20,6 +20,8 @@ const userSlice = createSlice({
     },
 });
 
+// export const selectUsername = (state) => state.value.username;
+
 export const { login, logout } = userSlice.actions;
 
 export default userSlice;

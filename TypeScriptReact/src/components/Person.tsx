@@ -1,5 +1,5 @@
 // import { useState } from "react";
-
+import React from "react";
 interface Props {
     name: string;
     email: string;
@@ -15,7 +15,7 @@ export enum Country {
     US = "United State",
 }
 
-const Person = (props: Props) => {
+const Person: React.FC<Props> = (props: Props) => {
     // const [name, setName] = useState<string>(props.name);
 
     return (
